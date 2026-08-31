@@ -1,0 +1,162 @@
+[
+  {
+    "_id": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "username": "Anna Kowalska",
+    "email": "demo.commenter01@example.test",
+    "authType": "local",
+    "role": "user",
+    "profilePicture": "",
+    "createdAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "username": "Marek Nowak",
+    "email": "demo.commenter02@example.test",
+    "authType": "local",
+    "role": "user",
+    "profilePicture": "",
+    "createdAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "username": "Julia Zielinska",
+    "email": "demo.commenter03@example.test",
+    "authType": "local",
+    "role": "user",
+    "profilePicture": "",
+    "createdAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "username": "Piotr Wisniewski",
+    "email": "demo.commenter04@example.test",
+    "authType": "local",
+    "role": "user",
+    "profilePicture": "",
+    "createdAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "username": "Ola Kaminska",
+    "email": "demo.commenter05@example.test",
+    "authType": "local",
+    "role": "user",
+    "profilePicture": "",
+    "createdAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "username": "Tomasz Lewandowski",
+    "email": "demo.commenter06@example.test",
+    "authType": "local",
+    "role": "user",
+    "profilePicture": "",
+    "createdAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "username": "Zofia Wojcik",
+    "email": "demo.commenter07@example.test",
+    "authType": "local",
+    "role": "user",
+    "profilePicture": "",
+    "createdAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "username": "Krzysztof Dabrowski",
+    "email": "demo.commenter08@example.test",
+    "authType": "local",
+    "role": "user",
+    "profilePicture": "",
+    "createdAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "username": "Natalia Mazur",
+    "email": "demo.commenter09@example.test",
+    "authType": "local",
+    "role": "user",
+    "profilePicture": "",
+    "createdAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "username": "Adam Kaczmarek",
+    "email": "demo.commenter10@example.test",
+    "authType": "local",
+    "role": "user",
+    "profilePicture": "",
+    "createdAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T12:00:00.000Z"
+    }
+  }
+]

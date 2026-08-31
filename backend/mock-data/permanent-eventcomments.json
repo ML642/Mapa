@@ -1,0 +1,1502 @@
+[
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0001"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0002"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0003"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0004"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0005"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0006"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0007"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0008"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0009"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db000a"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db000b"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db000c"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db000d"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db000e"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db000f"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0010"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0011"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0012"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0013"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0014"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0015"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0016"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0017"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0018"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0019"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db001a"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db001b"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db001c"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db001d"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db001e"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db001f"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0020"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0021"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0022"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0023"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0024"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0025"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0026"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0027"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0028"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0029"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db002a"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db002b"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db002c"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db002d"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db002e"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db002f"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0030"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0031"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0032"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0033"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0034"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0035"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0036"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0037"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0038"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0039"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db003a"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db003b"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db003c"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db003d"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db003e"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db003f"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0040"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0041"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0042"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0043"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0044"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0045"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0046"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0047"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0048"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0049"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db004a"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db004b"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db004c"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db004d"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db004e"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db004f"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0050"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0051"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0052"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0053"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0054"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0055"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0056"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0057"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0058"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0059"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db005a"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db005b"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000005"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db005c"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000006"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db005d"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000007"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db005e"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000008"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db005f"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000009"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0060"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000010"
+    },
+    "body": "[Demo ongoing comment] This event is a useful option to keep on the Warsaw calendar. Please confirm the current schedule with the organiser.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0061"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000001"
+    },
+    "body": "[Demo ongoing comment] Saved as an ongoing event. Check the venue page for the latest admission and ticket details.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0062"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000002"
+    },
+    "body": "[Demo ongoing comment] A good event to revisit later. Please verify the final programme before attending.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0063"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000003"
+    },
+    "body": "[Demo ongoing comment] This listing is easy to find on the map. Confirm opening times directly with the venue.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  },
+  {
+    "event": {
+      "$oid": "6a9700005ccdc88793db0064"
+    },
+    "author": {
+      "$oid": "66f0e1000000000000000004"
+    },
+    "body": "[Demo ongoing comment] Added to the demo shortlist. The organiser can provide the most up-to-date information.",
+    "createdAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T13:00:00.000Z"
+    }
+  }
+]
