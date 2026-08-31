@@ -34,7 +34,7 @@ export const mapboxService = {
   /**
    */
   getRouteUrl: (lat: number, lng: number, title: string) => {
-    return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&destination_place_id=${encodeURIComponent(title)}`;
+    return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&destination_place_id=${encodeURIComponent(title)}&hl=en`;
   },
 
   getYandexMapUrl: (lat: number, lng: number, title: string) => {
