@@ -22,7 +22,7 @@ export default function PriceFilterModal({ open, min, max, onMinChange, onMaxCha
         <div className={`fixed inset-0 ${layerClassName} flex items-center justify-center bg-[rgba(87,34,75,0.20)] p-4 backdrop-blur-[2px]`} role="dialog" aria-modal="true">
             <div className="w-full max-w-[307px] rounded-[12px] bg-white p-[14px] shadow-app-md">
                 <div className="mb-[10px] flex items-center justify-between">
-                    <h2 className="text-[14px] font-[700] text-brand">Choose a price (BYN)</h2>
+                    <h2 className="text-[14px] font-[700] text-brand">Choose a price (PLN)</h2>
                     <button type="button" onClick={onClose} className="flex h-[24px] w-[24px] items-center justify-center text-brand" aria-label="Close price selection"><X size={16} strokeWidth={2} /></button>
                 </div>
                 <div className="flex items-center gap-[4px]">

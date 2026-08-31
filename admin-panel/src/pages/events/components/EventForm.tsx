@@ -75,7 +75,7 @@ export const EventForm = ({
             type="number"
             value={formState.price}
           />
-          <span className="input-with-suffix__label">BYN</span>
+          <span className="input-with-suffix__label">PLN</span>
         </div>
       </Field>
 

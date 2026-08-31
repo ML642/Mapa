@@ -1,7 +1,7 @@
-const CURRENCY_LABEL = 'BYN';
+const CURRENCY_LABEL = 'PLN';
 const RUB_LABEL = 'RUB';
-const MONEY_RANGE_PATTERN = /(от\s+)?(\d+(?:[\s\u00A0]\d{3})*(?:[,.]\d{1,2})?)\s*[–—-]\s*(\d+(?:[\s\u00A0]\d{3})*(?:[,.]\d{1,2})?)\s*(руб(?:\.|лей|ля|ль)?|byn)(?![a-zа-яё])/giu;
-const MONEY_AMOUNT_PATTERN = /(от\s+)?(\d+(?:[\s\u00A0]\d{3})*(?:[,.]\d{1,2})?)\s*(руб(?:\.|лей|ля|ль)?|byn)(?![a-zа-яё])/giu;
+const MONEY_RANGE_PATTERN = /(от\s+)?(\d+(?:[\s\u00A0]\d{3})*(?:[,.]\d{1,2})?)\s*[–—-]\s*(\d+(?:[\s\u00A0]\d{3})*(?:[,.]\d{1,2})?)\s*(руб(?:\.|лей|ля|ль)?|pln)(?![a-zа-яё])/giu;
+const MONEY_AMOUNT_PATTERN = /(от\s+)?(\d+(?:[\s\u00A0]\d{3})*(?:[,.]\d{1,2})?)\s*(руб(?:\.|лей|ля|ль)?|pln)(?![a-zа-яё])/giu;
 
 const isFreePriceValue = (value: string) => {
     const normalized = value.trim().replace(/\s/g, '').replace(',', '.');
@@ -28,7 +28,7 @@ const looksLikeSimplePriceText = (value: string) => {
         lower.includes('свобод') ||
         lower.includes('преми') ||
         lower.includes('руб') ||
-        lower.includes('byn') ||
+        lower.includes('pln') ||
         lower.includes('за') ||
         lower.includes('чек')
     ) {
@@ -46,7 +46,7 @@ const parseMoneyAmount = (value: string) => {
     return Number.isFinite(parsed) ? parsed : null;
 };
 
-const getCurrencyLabel = (value: string) => value.toLowerCase() === 'byn' ? CURRENCY_LABEL : RUB_LABEL;
+const getCurrencyLabel = (value: string) => value.toLowerCase() === 'pln' ? CURRENCY_LABEL : RUB_LABEL;
 
 type CompactMoneyMatch = {
     value: number;

@@ -161,9 +161,9 @@ const normalizePriceForComparison = (value) => {
     .toLowerCase();
   const compactText = normalizedText.replace(/\s+/g, '');
   const textWithoutTrailingPunctuation = normalizedText.replace(/[.!?]+$/g, '').trim();
-  const hasMoneyAmount = /\d+(?:[,.]\d{1,2})?\s*(?:руб\.?|р\.?|byn|₽)/i.test(normalizedText);
+  const hasMoneyAmount = /\d+(?:[,.]\d{1,2})?\s*(?:руб\.?|р\.?|pln|₽)/i.test(normalizedText);
 
-  if (/^(?:0|0[,.]0+)(?:руб\.?|р\.?|byn)?$/i.test(compactText)) {
+  if (/^(?:0|0[,.]0+)(?:руб\.?|р\.?|pln)?$/i.test(compactText)) {
     return 'price:0.00';
   }
 
@@ -176,7 +176,7 @@ const normalizePriceForComparison = (value) => {
     return 'price:0.00';
   }
 
-  const simpleMoneyMatch = normalizedText.match(/^(\d+(?:[,.]\d{1,2})?)(?:\s*(?:руб\.?|р\.?|byn))?$/i);
+  const simpleMoneyMatch = normalizedText.match(/^(\d+(?:[,.]\d{1,2})?)(?:\s*(?:руб\.?|р\.?|pln))?$/i);
   if (simpleMoneyMatch) {
     return `price:${Number(simpleMoneyMatch[1].replace(',', '.')).toFixed(2)}`;
   }
@@ -208,7 +208,7 @@ test('price comparison is wired to the current frontend list and detail componen
 });
 
 test('price comparison normalizes simple numeric and free aliases', () => {
-  const numericAliases = ['6', '6,00', '6.00', '6 руб.', '6,00 руб.', '6.00 BYN'];
+  const numericAliases = ['6', '6,00', '6.00', '6 руб.', '6,00 руб.', '6.00 PLN'];
   const freeAliases = ['0', '0,00', 'Бесплатно', 'Бесплатный', 'Свободный', 'Свободный и без брони'];
 
   assert.equal(new Set(numericAliases.map(normalizePriceForComparison)).size, 1);

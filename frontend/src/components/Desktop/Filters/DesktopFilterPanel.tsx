@@ -197,10 +197,10 @@ export default function DesktopFilterPanel({
         && !(draftDetails.priceMin === '0' && draftDetails.priceMax === '0'),
     );
     const priceSelectionLabel = draftDetails.priceMin && draftDetails.priceMax
-        ? `${draftDetails.priceMin} - ${draftDetails.priceMax} BYN`
+        ? `${draftDetails.priceMin} - ${draftDetails.priceMax} PLN`
         : draftDetails.priceMin
-            ? `from ${draftDetails.priceMin} BYN`
-            : `up to ${draftDetails.priceMax} BYN`;
+            ? `from ${draftDetails.priceMin} PLN`
+            : `up to ${draftDetails.priceMax} PLN`;
     const isFreeSelected = draftDetails.priceMin === '0' && draftDetails.priceMax === '0';
     const hasDraftChanges = [
         [...draftCategories].sort().join('|') !== [...selectedCategories].sort().join('|'),
