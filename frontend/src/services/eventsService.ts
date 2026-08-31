@@ -51,14 +51,34 @@ export interface EventsResponse {
   totalPages: number;
 }
 
+const isTomorrowOrDayAfterRange = (dateFrom?: string, dateTo?: string) => {
+  if (!dateFrom || !dateTo) return false;
+
+  const start = new Date(dateFrom);
+  const end = new Date(dateTo);
+  if (!Number.isFinite(start.getTime()) || !Number.isFinite(end.getTime())) return false;
+
+  const toLocalDay = (value: Date) => new Date(value.getFullYear(), value.getMonth(), value.getDate());
+  const startDay = toLocalDay(start);
+  const endDay = toLocalDay(end);
+  const today = toLocalDay(new Date());
+  const dayOffset = Math.round((startDay.getTime() - today.getTime()) / 86_400_000);
+
+  return startDay.getTime() === endDay.getTime() && (dayOffset === 1 || dayOffset === 2);
+};
+
 const normalizeEventFilters = (filters?: EventFilters) => {
   if (!filters) return undefined;
 
   const { limit, size, ...rest } = filters;
+  const requestedSize = typeof size === 'number' ? size : typeof limit === 'number' ? limit : undefined;
+  const effectiveSize = isTomorrowOrDayAfterRange(rest.dateFrom, rest.dateTo)
+    ? Math.min(requestedSize ?? 10, 10)
+    : requestedSize;
 
   return {
     ...rest,
-    ...(typeof size === 'number' ? { size } : typeof limit === 'number' ? { size: limit } : {}),
+    ...(typeof effectiveSize === 'number' ? { size: effectiveSize } : {}),
   };
 };
 
