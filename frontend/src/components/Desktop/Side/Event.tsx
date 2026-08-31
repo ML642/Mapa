@@ -141,13 +141,19 @@ const Event: React.FC<Props> = ({ id, title, category, date, location, time, pri
                 <div className='flex w-full min-w-0 flex-col items-start gap-[2px]'>
                     <p
                         style={{ letterSpacing: '-0.64px' }}
-                        className='mb-[2px] block h-[19px] w-full overflow-hidden text-ellipsis whitespace-nowrap text-[16px] font-[500] leading-[19px] text-brand transition-all duration-200'
+                        className='mb-[2px] block h-[19px] w-full min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[16px] font-[500] leading-[19px] text-brand transition-all duration-200'
                     >
                         {title}
                     </p>
 
                     <p style={{ letterSpacing: '-0.48px' }} className='flex h-[12px] w-full items-center truncate whitespace-nowrap text-[12px] font-[400] text-brand transition-all duration-200'>{date}</p>
-                    <p style={{ letterSpacing: '-0.48px' }} className='flex h-[12px] w-full items-center truncate whitespace-nowrap text-[12px] font-[400] text-brand-soft transition-all duration-200'>{location}</p>
+                    <p
+                        style={{ letterSpacing: '-0.48px' }}
+                        className='block h-[12px] w-full min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[12px] font-[400] leading-[12px] text-brand-soft transition-all duration-200'
+                        title={location}
+                    >
+                        {location}
+                    </p>
                 </div>
 
                 <div className='flex gap-[4px]'>

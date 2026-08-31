@@ -20,6 +20,8 @@ interface MainSideEventListProps {
     activeEventId?: string | null;
 }
 
+const MAX_DESKTOP_EVENT_CARDS = 10;
+
 export default function MainSideEventList({
     events,
     loading,
@@ -32,9 +34,10 @@ export default function MainSideEventList({
     expanded = true,
     activeEventId,
 }: MainSideEventListProps) {
-    const visibleEvents = collapsedCount
+    const requestedEvents = collapsedCount
         ? events.slice(0, expanded ? expandedCount ?? events.length : collapsedCount)
         : events;
+    const visibleEvents = requestedEvents.slice(0, MAX_DESKTOP_EVENT_CARDS);
 
     return (
         <AnimatePresence mode="wait">

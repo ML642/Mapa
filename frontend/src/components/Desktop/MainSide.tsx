@@ -136,7 +136,7 @@ const MainSide: React.FC<Props> = ({
                         onClick={onClick}
                         cardVariants={cardVariants}
                         collapsedCount={1}
-                        expandedCount={7}
+                        expandedCount={10}
                         expanded={showMoreInteresting}
                         activeEventId={activeEventId}
                     />
