@@ -65,6 +65,14 @@ export const mapboxService = {
     return `https://www.google.com/maps/embed/v1/place?${searchParams.toString()}`;
   },
 
+  getStaticMapImageUrl: (lat: number, lng: number) => {
+    if (!MAPBOX_CONFIG.ACCESS_TOKEN) return '';
+
+    const marker = `pin-s+66235c(${lng},${lat})`;
+    const center = `${lng},${lat},14`;
+    return `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/${marker}/${center}/600x400?access_token=${encodeURIComponent(MAPBOX_CONFIG.ACCESS_TOKEN)}&attribution=false&logo=false`;
+  },
+
   /**
    */
   openRoute: (lat: number, lng: number, title: string) => {

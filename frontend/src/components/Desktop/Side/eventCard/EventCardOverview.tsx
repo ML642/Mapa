@@ -18,7 +18,7 @@ interface EventCardOverviewProps {
     priceLabel?: string | null;
     phone?: string;
     source?: string;
-    googleEmbedUrl: string;
+    routeMapImageUrl: string;
     onOpenYandex: () => void;
     onAddFriends: () => void;
     friendsTabActive?: boolean;
@@ -135,7 +135,7 @@ export default function EventCardOverview({
     priceLabel,
     phone,
     source,
-    googleEmbedUrl,
+    routeMapImageUrl,
     onOpenYandex,
     onAddFriends,
     friendsTabActive,
@@ -267,40 +267,33 @@ export default function EventCardOverview({
                 {isMobile ? 'Location' : 'Route'}
             </p>
 
-            <div className="relative h-[220px] w-[100%] max-w-[420px] overflow-hidden rounded-xl shadow-lg">
-                {googleEmbedUrl ? (
-                    <iframe
-                        title="map"
-                        src={googleEmbedUrl}
-                        className="absolute inset-0 h-full w-full rounded-xl border-0"
-                        allowFullScreen
+            <div className="relative h-[220px] w-[100%] max-w-[420px] overflow-hidden rounded-xl bg-[var(--color-surface-placeholder)] shadow-lg">
+                {routeMapImageUrl ? (
+                    <img
+                        src={routeMapImageUrl}
+                        alt="Map showing the event location"
+                        className="absolute inset-0 h-full w-full object-cover"
                         loading="lazy"
                     />
-                ) : (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-xl bg-[var(--color-surface-placeholder)] px-6 text-center">
-                        <MapPin className="h-7 w-7 text-brand" aria-hidden="true" />
-                        <p className="max-w-[280px] text-[13px] text-brand">
+                ) : null}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-white/10" aria-hidden="true" />
+
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
+                    <div className="rounded-xl bg-white/90 px-5 py-4 shadow-app-sm backdrop-blur-sm">
+                        <MapPin className="mx-auto h-7 w-7 text-brand" aria-hidden="true" />
+                        <p className="mt-2 max-w-[280px] text-[13px] text-brand">
                             {address || 'Open the route in Google Maps'}
                         </p>
-                        <button
-                            type="button"
-                            onClick={onOpenYandex}
-                            className="rounded-2xl bg-white px-6 py-2 text-[14px] font-medium text-brand shadow-app-sm transition hover:bg-surface-base"
-                        >
-                            Get directions
-                        </button>
                     </div>
-                )}
-
-                {googleEmbedUrl && !isMobile && <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                     <button
                         type="button"
                         onClick={onOpenYandex}
-                        className="rounded-2xl bg-white/80 px-6 py-2 font-medium text-gray-900 transition backdrop-blur-md hover:bg-white/90"
+                        className="rounded-2xl bg-white px-6 py-2 text-[14px] font-medium text-brand shadow-app-sm transition hover:bg-surface-base"
                     >
                         Get directions
                     </button>
-                </div>}
+                </div>
+
             </div>
         </div>
     );

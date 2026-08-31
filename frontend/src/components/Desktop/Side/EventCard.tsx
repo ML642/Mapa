@@ -183,7 +183,7 @@ export default function EventCard({
         window.open(url, "_blank");
     };
 
-    const googleEmbedUrl = mapboxService.getGoogleEmbedUrl(lat, lon);
+    const routeMapImageUrl = mapboxService.getStaticMapImageUrl(lat, lon);
     const eventImageUrl = getEventImageUrl(eventData?.event_image, eventData?.category);
     const priceLabel = getPriceLabel(eventData?.price, eventData?.price_description, eventData?.is_premium);
     const isFavoriteDisabled = loading || !eventId || loadingFavorites.has(eventId);
@@ -416,7 +416,7 @@ export default function EventCard({
                                             priceLabel={eventData?.event_date || eventData?.isPermanent ? priceLabel : null}
                                             phone={eventData?.phone}
                                             source={eventData?.source}
-                                            googleEmbedUrl={googleEmbedUrl}
+                                            routeMapImageUrl={routeMapImageUrl}
                                             onOpenYandex={handleOpenYandex}
                                             onAddFriends={openAddFriendsModal}
                                         />
