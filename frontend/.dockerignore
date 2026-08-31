@@ -1,0 +1,29 @@
+# Node & build artifacts
+node_modules
+dist
+build
+.cache
+*.log
+
+# OS & IDE
+.DS_Store
+*.swp
+*.swo
+.idea
+.vscode
+
+# Test & coverage
+coverage
+*.test.*
+*.spec.*
+
+# Env files (важно!)
+.env
+.env.*
+
+# Misc
+*.tgz
+*.gz
+*.zip
+*.tar
+*.tar.gz

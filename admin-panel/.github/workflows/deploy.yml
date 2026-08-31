@@ -1,0 +1,87 @@
+name: Build and Deploy Admin Panel
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY_IMAGE: ghcr.io/mapaby/admin
+  DOCKER_TARGET: production
+  IMAGE_TAG: prod
+  IMAGE_SHA_TAG: ${{ format('{0}-{1}', github.ref_name, github.sha) }}
+  DEPLOY_SERVICE: admin
+  COMPOSE_FILE: docker-compose.yml
+
+jobs:
+  validate-ref:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate deployment branch
+        run: |
+          if [ "${GITHUB_REF_NAME}" != "main" ]; then
+            echo "This workflow supports only 'main' branch. Got '${GITHUB_REF_NAME}'." >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate-ref
+    runs-on: ubuntu-latest
+    environment: production
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          target: ${{ env.DOCKER_TARGET }}
+          push: true
+          tags: |
+            ${{ env.REGISTRY_IMAGE }}:${{ env.IMAGE_TAG }}
+            ${{ env.REGISTRY_IMAGE }}:${{ env.IMAGE_SHA_TAG }}
+          build-args: |
+            VITE_API_URL=${{ vars.VITE_API_URL }}
+            VITE_MAPBOX_ACCESS_TOKEN=${{ vars.VITE_MAPBOX_ACCESS_TOKEN }}
+            VITE_MAPBOX_STYLE=${{ vars.VITE_MAPBOX_STYLE }}
+            VITE_MAPBOX_DEFAULT_CENTER_LAT=${{ vars.VITE_MAPBOX_DEFAULT_CENTER_LAT }}
+            VITE_MAPBOX_DEFAULT_CENTER_LNG=${{ vars.VITE_MAPBOX_DEFAULT_CENTER_LNG }}
+            VITE_MAPBOX_DEFAULT_ZOOM=${{ vars.VITE_MAPBOX_DEFAULT_ZOOM }}
+            VITE_MAPBOX_MIN_ZOOM=${{ vars.VITE_MAPBOX_MIN_ZOOM }}
+            VITE_MAPBOX_MAX_ZOOM=${{ vars.VITE_MAPBOX_MAX_ZOOM }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ vars.DEPLOY_DIR }}
+            docker compose -f ${{ env.COMPOSE_FILE }} pull ${{ env.DEPLOY_SERVICE }}
+            docker compose -f ${{ env.COMPOSE_FILE }} up -d ${{ env.DEPLOY_SERVICE }}

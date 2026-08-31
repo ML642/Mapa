@@ -1,0 +1,37 @@
+# Mapa — your guide to events in Warsaw
+
+> A map of events and activities in Warsaw. Find concerts, exhibitions, parties, theatre performances and other things to do across the city.
+
+## Key pages
+
+- Home: https://my-mapa.by/
+- Search events: https://my-mapa.by/?tab=search
+- Friends activity: https://my-mapa.by/?tab=friends
+
+## Core features
+
+- **Event map**: an interactive map with event markers organised by category
+- **Search & filters**: search by title, category and date
+- **Friends**: add friends and view their activity — what they are attending or planning to attend
+- **Favorites**: save events for later
+- **Google OAuth**: sign in and register with Google
+- **Social sharing**: share events via Telegram, WhatsApp, VK and Viber
+
+## Public API endpoints
+
+- `GET /events` — filtered list of events
+- `GET /events/map` — events for display on the map
+- `GET /events/search` — ranked event search
+- `GET /events/interesting` — curated interesting events
+
+## Tech stack
+
+- React 19 + TypeScript
+- Vite 7
+- Mapbox GL JS — mapping
+- Tailwind CSS — styling
+- Framer Motion — animations
+
+## Related links
+
+- Source code: https://github.com/anomalyco/Mapa-Frontend

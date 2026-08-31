@@ -1,0 +1,73 @@
+# docker-compose.dev.yml
+# Локальные зависимости для разработки и тестов.
+# Поднимает ТОЛЬКО инфраструктуру (MongoDB, Redis, Mailpit).
+# Само приложение запускается на хосте: `npm run dev`.
+#
+#   Запуск:        docker compose -f docker-compose.dev.yml up -d
+#   Логи:          docker compose -f docker-compose.dev.yml logs -f
+#   Остановка:     docker compose -f docker-compose.dev.yml down
+#   Сброс данных:  docker compose -f docker-compose.dev.yml down -v
+#
+# Порты совпадают с .env.example, поэтому приложение с дефолтным .env
+# подключится без изменений (MONGO_URI=mongodb://127.0.0.1:27017/mapa,
+# REDIS_HOST=127.0.0.1, REDIS_PORT=6379).
+#
+# Для писем используйте Mailpit: в .env задайте
+#   EMAIL_HOST=127.0.0.1
+#   EMAIL_PORT=1025        # !=465, поэтому emailService не включает implicit TLS
+#   EMAIL_USER=dev
+#   EMAIL_PASS=dev
+#   EMAIL_FROM=no-reply@mapa.local
+# Веб-интерфейс с пойманными письмами: http://localhost:8025
+
+name: mapa-dev
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: mapa-mongo-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: mapa
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  redis:
+    image: redis:7-alpine
+    container_name: mapa-redis-dev
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # Локальный SMTP-«ловец» писем: ничего не уходит наружу,
+  # все письма (верификация, сброс пароля) видны в web UI.
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: mapa-mailpit-dev
+    restart: unless-stopped
+    ports:
+      - "1025:1025" # SMTP
+      - "8025:8025" # Web UI -> http://localhost:8025
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: "true"
+      MP_SMTP_AUTH_ALLOW_INSECURE: "true"
+
+volumes:
+  mongo_data:
+  redis_data:

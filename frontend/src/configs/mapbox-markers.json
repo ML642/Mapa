@@ -1,0 +1,109 @@
+{
+  "version": "1.0.0",
+  "name": "MapBox Markers Configuration",
+  "description": "Mapbox event marker and icon configuration",
+  "markers": {
+    "defaultZoom": 12,
+    "defaultCenter": {
+      "latitude": 53.9045,
+      "longitude": 27.5615
+    },
+    "markerSize": {
+      "default": 40,
+      "active": 48,
+      "hover": 44
+    },
+    "popup": {
+      "maxWidth": 300,
+      "offset": [0, -10],
+      "closeButton": true,
+      "closeOnClick": false
+    }
+  },
+  "categories": {
+    "Выставка": {
+      "icon": "exhibitions.svg",
+      "iconActive": "exhibitions_active.svg",
+      "color": "#FF6B6B",
+      "zIndex": 1
+    },
+    "Музыка": {
+      "icon": "music.svg",
+      "iconActive": "music_active.svg",
+      "color": "#4ECDC4",
+      "zIndex": 1
+    },
+    "Театр": {
+      "icon": "theatre.svg",
+      "iconActive": "theatre_active.svg",
+      "color": "#95E1D3",
+      "zIndex": 1
+    },
+    "Фестиваль": {
+      "icon": "festival.svg",
+      "iconActive": "festival_active.svg",
+      "color": "#F38181",
+      "zIndex": 1
+    },
+    "Музей": {
+      "icon": "museum.svg",
+      "iconActive": "museum_active.svg",
+      "color": "#AA96DA",
+      "zIndex": 1
+    },
+    "Спорт": {
+      "icon": "sport.svg",
+      "iconActive": "sport_active.svg",
+      "color": "#FCBAD3",
+      "zIndex": 1
+    },
+    "Кино": {
+      "icon": "cinema.svg",
+      "iconActive": "cinema_active.svg",
+      "color": "#A8E6CF",
+      "zIndex": 1
+    },
+    "Клуб": {
+      "icon": "clubs.svg",
+      "iconActive": "clubs_active.svg",
+      "color": "#FFD3B6",
+      "zIndex": 1
+    },
+    "Квест": {
+      "icon": "quests.svg",
+      "iconActive": "quests_active.svg",
+      "color": "#FFAAA5",
+      "zIndex": 1
+    },
+    "Образование": {
+      "icon": "education.svg",
+      "iconActive": "education_active.svg",
+      "color": "#B4A7D6",
+      "zIndex": 1
+    },
+    "Экскурсия": {
+      "icon": "excursion.svg",
+      "iconActive": "excursion_active.svg",
+      "color": "#FF8B94",
+      "zIndex": 1
+    },
+    "Для детей": {
+      "icon": "children.svg",
+      "iconActive": "children_active.svg",
+      "color": "#F7DC6F",
+      "zIndex": 1
+    },
+    "Шоу": {
+      "icon": "show.svg",
+      "iconActive": "show_active.svg",
+      "color": "#BB8FCE",
+      "zIndex": 1
+    }
+  },
+  "clustering": {
+    "enabled": false,
+    "maxZoom": 15,
+    "radius": 50
+  }
+}
+

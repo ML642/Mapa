@@ -1,0 +1,12 @@
+node_modules/
+
+#dirs
+routes/
+tests/
+uploads/
+
+#files
+package-lock.json
+package.json
+LICENSE
+README.md

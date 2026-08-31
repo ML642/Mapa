@@ -1,0 +1,92 @@
+name: Build and Deploy Frontend
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY_IMAGE: ghcr.io/mapaby/frontend
+  DOCKER_TARGET: production
+  IMAGE_TAG: prod
+  IMAGE_SHA_TAG: ${{ format('{0}-{1}', github.ref_name, github.sha) }}
+
+jobs:
+  validate-ref:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate deployment branch
+        run: |
+          if [ "${GITHUB_REF_NAME}" != "main" ]; then
+            echo "This workflow supports only 'main' branch. Got '${GITHUB_REF_NAME}'." >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate-ref
+    runs-on: ubuntu-latest
+    environment: production
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          target: ${{ env.DOCKER_TARGET }}
+          push: true
+          tags: |
+            ${{ env.REGISTRY_IMAGE }}:${{ env.IMAGE_TAG }}
+            ${{ env.REGISTRY_IMAGE }}:${{ env.IMAGE_SHA_TAG }}
+          build-args: |
+            VITE_API_URL=${{ vars.VITE_API_URL }}
+            VITE_MAPBOX_ACCESS_TOKEN=${{ vars.VITE_MAPBOX_ACCESS_TOKEN }}
+            VITE_MAPBOX_STYLE=${{ vars.VITE_MAPBOX_STYLE }}
+            VITE_MAPBOX_DEFAULT_CENTER_LAT=${{ vars.VITE_MAPBOX_DEFAULT_CENTER_LAT }}
+            VITE_MAPBOX_DEFAULT_CENTER_LNG=${{ vars.VITE_MAPBOX_DEFAULT_CENTER_LNG }}
+            VITE_MAPBOX_DEFAULT_ZOOM=${{ vars.VITE_MAPBOX_DEFAULT_ZOOM }}
+            VITE_GOOGLE_CLIENT_ID=${{ vars.VITE_GOOGLE_CLIENT_ID }}
+            VITE_GOOGLE_MAPS_EMBED_API_KEY=${{ vars.VITE_GOOGLE_MAPS_EMBED_API_KEY }}
+            VITE_YANDEX_MAPS_API_KEY=${{ vars.VITE_YANDEX_MAPS_API_KEY }}
+            VITE_TELEGRAM_SHARE_URL=${{ vars.VITE_TELEGRAM_SHARE_URL }}
+            VITE_WHATSAPP_SHARE_URL=${{ vars.VITE_WHATSAPP_SHARE_URL }}
+            VITE_VK_SHARE_URL=${{ vars.VITE_VK_SHARE_URL }}
+            VITE_INSTAGRAM_URL=${{ vars.VITE_INSTAGRAM_URL }}
+            VITE_SITE_TITLE=${{ vars.VITE_SITE_TITLE }}
+            VITE_SITE_DESCRIPTION=${{ vars.VITE_SITE_DESCRIPTION }}
+            VITE_OG_TITLE=${{ vars.VITE_OG_TITLE }}
+            VITE_OG_DESCRIPTION=${{ vars.VITE_OG_DESCRIPTION }}
+            VITE_SITE_URL=${{ vars.VITE_SITE_URL }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: /opt/mymapa/deploy/deploy-frontend.sh

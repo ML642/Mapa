@@ -1,0 +1,136 @@
+[{
+  "_id": {
+    "$oid": "68f20aa006e813739f5a34fd"
+  },
+  "username": "testdev",
+  "email": "testdev@gmail.com",
+  "password": "$2b$10$eEPDWLhGuLdxfK4/JmGyz.MTZgBeEaQUEWFA0BZ9.i/cL4v0gRmyq",
+  "role": "superadmin",
+  "isVerified": true,
+  "profilePicture": "uploads/users/68f20aa006e813739f5a34fd/avatar/avatar.png",
+  "bio": "Ну я",
+  "isPayed": false,
+  "type": "default",
+  "createdAt": {
+    "$date": "2025-10-17T09:21:36.226Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-18T12:03:52.954Z"
+  },
+  "__v": 373,
+  "interests": {
+    "Выставка": -1.325011132702992,
+    "Концерт": -0.5846515844066463,
+    "Спектакль": -1.7321706778163974
+  },
+  "authProvider": "local",
+  "favorites": [
+    {
+      "$oid": "6918b831440f5b4f14b6652a"
+    }
+  ],
+  "authType": "local",
+  "isPublic": false,
+  "interests_version": 2,
+  "might_attend": [],
+  "will_attend": [],
+  "friend_requests": []
+},
+{
+  "_id": {
+    "$oid": "68fca8aff86de636092406ab"
+  },
+  "username": "Pavel",
+  "email": "pavel.p1112@gmail.com",
+  "password": "$2b$10$gmzX/hV3apAve0KpATJpTeIyM.q0xaBnIU76HkuNhlVWmlIr9K80m",
+  "role": "admin",
+  "isVerified": true,
+  "profilePicture": "",
+  "bio": "Ну что там с деньгами?",
+  "interests": {
+    "Вечеринка": -1.8516601346563217,
+    "Квест": -1.8516601346563217,
+    "Кино": -1.8516601346563217,
+    "Концерт": -1.8516601346563217,
+    "Фестиваль": -1.8516601346563217,
+    "Музей": -4.467392408210313,
+    "Образование": -4.600170185988091,
+    "Экскурсия": -4.575170185988091
+  },
+  "isPayed": false,
+  "type": "default",
+  "createdAt": {
+    "$date": "2025-10-25T10:38:39.423Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-15T19:23:24.286Z"
+  },
+  "__v": 110,
+  "verificationToken": null,
+  "verificationTokenExpires": null,
+  "authType": "local",
+  "favorites": [
+    {
+      "$oid": "69026692f9a0860788c332bf"
+    },
+    {
+      "$oid": "69101aec289520b813ea91cc"
+    },
+    {
+      "$oid": "6910129c289520b813ea90aa"
+    }
+  ],
+  "friend_requests": [],
+  "friends": [
+    {
+      "$oid": "68ffd441f9a0860788c32fc4"
+    },
+    {
+      "$oid": "6912ba383650475c1731c364"
+    },
+    {
+      "$oid": "691f1cd05f3f74b22c94a8a3"
+    }
+  ],
+  "authProvider": "local",
+  "isPublic": false,
+  "interests_version": 16,
+  "might_attend": [
+    {
+      "$oid": "6918b36a440f5b4f14b663ce"
+    }
+  ],
+  "will_attend": [
+    {
+      "$oid": "6918b35e440f5b4f14b663b2"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "690f589839384e57f1ce32cf"
+  },
+  "username": "parser",
+  "email": "relax.by",
+  "password": "$2b$10$SwUdTowxWNKHrpa.r7X6HOOz0TOeOQW4/8p6G7wOj/bxkUnQq/vjm",
+  "authType": "local",
+  "role": "user",
+  "profilePicture": "",
+  "bio": "",
+  "isPublic": false,
+  "interests": {},
+  "friends": [],
+  "friend_requests": [],
+  "favorites": [],
+  "isPayed": false,
+  "type": "default",
+  "isVerified": false,
+  "createdAt": {
+    "$date": "2025-11-08T14:50:00.378Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-08T14:50:00.378Z"
+  },
+  "__v": 0
+}
+]

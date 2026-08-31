@@ -1,0 +1,3144 @@
+{
+  "info": {
+    "_postman_id": "8e735d18-ab5b-4a14-8949-ea1f1b2d480e",
+    "name": "Mapa-test",
+    "description": "Postman коллекция для CRUD операций с Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49251656",
+    "_collection_link": "https://go.postman.co/collection/49251656-8e735d18-ab5b-4a14-8949-ea1f1b2d480e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "login devuser",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "let secured = true;\r",
+              "let HOST = pm.environment.get(\"HOST\");\r",
+              "let extension = \"\";\r",
+              "\r",
+              "if (!HOST) {\r",
+              "    let IP = \"\";\r",
+              "    if (pm.environment.get(\"IP\") === undefined) {\r",
+              "        IP = \"localhost\";\r",
+              "    } else {\r",
+              "        IP = pm.environment.get(\"IP\");\r",
+              "    }\r",
+              "    \r",
+              "    let PORT = \"\";\r",
+              "    if (pm.environment.get(\"PORT\") === undefined) {\r",
+              "        PORT = \"3442\";\r",
+              "    } else {\r",
+              "        PORT = pm.environment.get(\"PORT\");\r",
+              "    }\r",
+              "    \r",
+              "    HOST = IP + \":\" + PORT;\r",
+              "    secured = false;\r",
+              "}\r",
+              "\r",
+              "if (!HOST.includes(\"://\")) {\r",
+              "    if (HOST.includes(\"localhost\") || HOST.includes(\"127.0.0.1\") || HOST.startsWith(\"192.168.\") || HOST.startsWith(\"10.\")) {\r",
+              "        secured = false;\r",
+              "    }\r",
+              "    \r",
+              "    extension = secured ? \"https://\" : \"http://\";\r",
+              "    HOST = extension + HOST;\r",
+              "}\r",
+              "\r",
+              "pm.environment.set(\"HOST\", HOST);\r",
+              "console.log(`HOST: ${HOST}`);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have accessToken\", function () {",
+              "    if (pm.response.code === 200) {",
+              "        const jsonData = pm.response.json();",
+              "        pm.expect(jsonData).to.have.property(\"accessToken\");",
+              "",
+              "        pm.environment.set(\"dev_token\", jsonData.accessToken);",
+              "        pm.environment.set(\"dev_id\", jsonData.user.id);",
+              "    } else {",
+              "        pm.execution.setNextRequest(null);",
+              "        console.error(\"Critical error (dev login): tests stoped\")",
+              "        pm.expect.fail(pm.response.code);",
+              "    }",
+              "",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"testdev@gmail.com\",\n  \"password\": \"db_drop\"\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/auth/login",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "refresh",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Have refreshToken\", function () {\r",
+              "    if (pm.response.code === 200) {\r",
+              "        const jsonData = pm.response.json();\r",
+              "        \r",
+              "        pm.expect(pm.cookies.has(\"refreshToken\")).to.be.true;\r",
+              "        pm.expect(jsonData).to.have.property(\"accessToken\");\r",
+              "\r",
+              "        pm.environment.set(\"dev_refresh_token_old\", pm.cookies.get(\"refreshToken\"));\r",
+              "        pm.environment.set(\"dev_refresh_token\", jsonData.refreshToken);\r",
+              "        pm.environment.set(\"dev_token\", jsonData.accessToken);\r",
+              "    } else {\r",
+              "        pm.expect.fail(pm.response.code);\r",
+              "    }\r",
+              "\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-refresh-token",
+            "value": "{{dev_refresh_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/auth/refresh",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "auth",
+            "refresh"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "register testuser",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code  201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"2fsmu4xgkhpq@mail.ru\",\n  \"password\": \"db_drop\"\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/auth/register",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "sendVerificationEmail",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code  200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"2fsmu4xgkhpq@mail.ru\"\r\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/auth/verify/email/send",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "auth",
+            "verify",
+            "email",
+            "send"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "verifyEmail",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have accessToken\", function () {",
+              "    if (pm.response.code === 200) {",
+              "        var jsonData = pm.response.json();",
+              "        pm.expect(jsonData).to.have.property(\"accessToken\");",
+              "",
+              "        pm.environment.set(\"test_token\", jsonData.accessToken);",
+              "        pm.environment.set(\"test_id\", jsonData.user.id);",
+              "        console.log(\"Token saved globally:\", jsonData.accessToken);",
+              "    } else {",
+              "        pm.expect.fail(pm.response.code);",
+              "    }",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.sendRequest({\r",
+              "    url: `${pm.environment.get(\"HOST\")}/user/get/token`,\r",
+              "    method: \"GET\",\r",
+              "    header: {\r",
+              "        \"Authorization\": `Bearer ${pm.environment.get(\"dev_token\")}`,\r",
+              "        \"Content-Type\": \"application/json\"\r",
+              "    }\r",
+              "}, function (err, res) {\r",
+              "    if (err) {\r",
+              "        console.error(\"Ошибка при запросе verify/email/token:\", err);\r",
+              "    } else {\r",
+              "        try {\r",
+              "            const data = res.json();\r",
+              "            if (data.verificationToken) {\r",
+              "                pm.environment.set(\"emailCode\", data.verificationToken);\r",
+              "                console.log(\"Код сохранён в переменную окружения emailCode:\", data.verificationToken);\r",
+              "            } else {\r",
+              "                console.warn(\"Ответ не содержит verificationToken:\", data);\r",
+              "            }\r",
+              "        } catch (parseErr) {\r",
+              "            console.error(\"Ошибка при парсинге ответа:\", parseErr, res.text());\r",
+              "        }\r",
+              "    }\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"2fsmu4xgkhpq@mail.ru\",\n  \"code\": {{emailCode}}\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/auth/verify/email/",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "auth",
+            "verify",
+            "email",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "updateUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have email\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"email\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{dev_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bio\": \"updated username\"\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/user/update/{{test_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "update",
+            "{{test_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "uploadAvatar",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "avatar",
+              "type": "file",
+              "uuid": "96fa97a3-c547-4443-9790-a3557bed1abd",
+              "src": "img.png"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{HOST}}/user/upload/avatar",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "upload",
+            "avatar"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "updateUserRole",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// pm.test(\"Have updated role\", function () {",
+              "//     const jsonData = pm.response.json();",
+              "//     pm.expect(jsonData).to.have.property(\"role\");",
+              "//     let role = jsonData.role;",
+              "//     pm.expect(role).to.be.equal(\"admin\");",
+              "// });",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{dev_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"admin\"\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/user/update/role/{{test_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "update",
+            "role",
+            "{{test_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "setFirstRecommendation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"categories\": [\"Концерты\", \"Выставка\"]\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/recommendation/user/set/interests",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "recommendation",
+            "user",
+            "set",
+            "interests"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getUserById",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have bio\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.be.an(\"object\");",
+              "    pm.expect(jsonData).to.have.property(\"bio\");",
+              "    pm.expect(jsonData).to.have.property(\"role\");",
+              "    pm.expect(jsonData).to.have.property(\"email\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/user/{{test_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "{{test_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getUserByUsername",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have username\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    for (user of jsonData) ",
+              "        pm.expect(user).to.have.property(\"username\");",
+              "    for (user of jsonData) ",
+              "        pm.expect(user).to.have.property(\"id\");",
+              "    for (user of jsonData) ",
+              "        pm.expect(user).to.have.property(\"userId\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{dev_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/user/username/testuser",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "username",
+            "testuser"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "sendFriendRequest",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/friends/requests/send/{{dev_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "friends",
+            "requests",
+            "send",
+            "{{dev_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "rejectFriendRequest",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{dev_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/friends/requests/reject/{{test_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "friends",
+            "requests",
+            "reject",
+            "{{test_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "sendFriendRequest 2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/friends/requests/send/{{dev_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "friends",
+            "requests",
+            "send",
+            "{{dev_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getFriendRequests",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have friend request\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"friend_requests\");",
+              "    const testId = pm.environment.get(\"test_id\");",
+              "    const hasFriendReq = jsonData.friend_requests.some(f => f._id === testId);",
+              "    pm.expect(hasFriendReq).to.be.true;",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{dev_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/friends/requests",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "friends",
+            "requests"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "acceptFriendRequest",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{dev_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/friends/requests/accept/{{test_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "friends",
+            "requests",
+            "accept",
+            "{{test_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getFriends",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have friend\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"friends\");",
+              "    const devId = pm.environment.get(\"dev_id\");",
+              "    const hasFriend = jsonData.friends.some(f => f._id === devId);",
+              "    pm.expect(hasFriend).to.be.true;",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/friends/{{test_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "friends",
+            "{{test_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "isFriend",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have friend\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.isFriend).to.be.equal(\"true\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/friends/isFriend/{{dev_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "friends",
+            "isFriend",
+            "{{dev_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getMutualFriends",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have friend\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"mutualFriendsCount\");",
+              "    pm.expect(jsonData.mutualFriendsCount).to.be.equal(0);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/friends/mutual/{{dev_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "friends",
+            "mutual",
+            "{{dev_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getMutualFriendsDetails",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have friend\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"mutualFriends\");",
+              "    pm.expect(jsonData.mutualFriends).to.be.empty",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/friends/mutual/details/{{dev_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "friends",
+            "mutual",
+            "details",
+            "{{dev_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "removeFriend",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/friends/remove/{{dev_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "friends",
+            "remove",
+            "{{dev_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createEventWithPng",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Have _id\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"_id\");",
+              "    pm.environment.set(\"event_id\", jsonData._id);",
+              "    console.log(\"event_id сохранён\")",
+              "});",
+              "",
+              "// pm.test(\"Have img\", function () {",
+              "//     var jsonData = pm.response.json();",
+              "//     pm.expect(jsonData).to.have.property(\"event_image\");",
+              "//     pm.expect(jsonData.event_image).to.not.be.empty;",
+              "// });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "images",
+              "type": "file",
+              "uuid": "96fa97a3-c547-4443-9790-a3557bed1abd",
+              "src": "img.png"
+            },
+            {
+              "key": "title",
+              "value": "test event with png",
+              "type": "text",
+              "uuid": "9bfe7788-fc91-48e1-8e98-e219d2a4c318"
+            },
+            {
+              "key": "description",
+              "value": "PNG!!!",
+              "type": "text",
+              "uuid": "f24442da-45a0-4085-ad09-01670c0f42b4"
+            },
+            {
+              "key": "event_dates",
+              "value": "2025-11-20T10:00:00Z",
+              "type": "text",
+              "uuid": "368bf0be-5b6f-40ca-8ef6-3023544b5fbf"
+            },
+            {
+              "key": "address",
+              "value": "Grodno",
+              "type": "text",
+              "uuid": "f7327fd7-1684-4f53-92ba-397d6c46e7d5"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{HOST}}/moderation/events/upload/event/",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "moderation",
+            "events",
+            "upload",
+            "event",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getEventsForModeration",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have array\", function () {",
+              "    let jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"events\");",
+              "    pm.expect(jsonData.events).to.be.an(\"array\");",
+              "    pm.expect(jsonData.events.length).to.be.above(0);",
+              "});",
+              "",
+              "pm.test(\"Have total\", function () {",
+              "    let jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"total\");",
+              "    pm.expect(jsonData.total).to.be.a(\"number\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/moderation/events/",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "moderation",
+            "events",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getParsedEventsForModeration",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have array\", function () {",
+              "    let jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"events\");",
+              "    pm.expect(jsonData.events).to.be.an(\"array\");",
+              "    pm.expect(jsonData.events.length).to.be.above(0);",
+              "});",
+              "",
+              "pm.test(\"Have total\", function () {",
+              "    let jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"total\");",
+              "    pm.expect(jsonData.total).to.be.a(\"number\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/moderation/events/parsed",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "moderation",
+            "events",
+            "parsed"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "approveEvent",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// pm.test(\"Is active\", function () {",
+              "//     if (pm.response.code === 200) {",
+              "//         var jsonData = pm.response.json();",
+              "//         pm.expect(jsonData.status).to.be.equal(\"active\")",
+              "//     }",
+              "// });",
+              "",
+              "// pm.test(\"Have img\", function () {",
+              "//     var jsonData = pm.response.json();",
+              "//     pm.expect(jsonData).to.have.property(\"event_image\");",
+              "//     pm.expect(jsonData.event_image).to.not.be.empty;",
+              "// });",
+              "",
+              "// pm.test(\"Is image path valid\", function () {",
+              "//     var jsonData = pm.response.json();",
+              "//     var img_path = \"uploads/events/\" + pm.environment.get(\"event_id\") + \"/image-0.png\"",
+              "//     pm.expect(jsonData.event_image[0]).to.be.equal(img_path);",
+              "// });",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "{{HOST}}/moderation/events/approve/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "moderation",
+            "events",
+            "approve",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "searchEvents",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have total\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"total\");",
+              "    pm.expect(jsonData.total).to.be.above(0);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/events/search?text=test ",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "events",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "text",
+              "value": "test "
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "addFavorite",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/user/favorites/add/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "favorites",
+            "add",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getFavorites",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have array\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"favorites\");",
+              "    pm.expect(jsonData.favorites).to.be.an(\"array\");",
+              "    pm.expect(jsonData.favorites.length).to.be.above(0);",
+              "});",
+              "",
+              "pm.test(\"Have favorite\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.favorites[0]).to.have.property(\"_id\");",
+              "    pm.expect(jsonData.favorites[0]._id).to.be.equal(pm.environment.get(\"event_id\"));",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/user/favorites/{{test_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "favorites",
+            "{{test_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "isFavorite",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Is true\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"isFavorite\");",
+              "    pm.expect(jsonData.isFavorite).to.be.equal(true);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/user/favorites/isFavorite/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "favorites",
+            "isFavorite",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "removeFavorite",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/user/favorites/delete/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "favorites",
+            "delete",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getFavorites 2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have array\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"favorites\");",
+              "    pm.expect(jsonData.favorites).to.be.an(\"array\");",
+              "    pm.expect(jsonData.favorites).to.be.empty;",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/user/favorites/{{test_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "favorites",
+            "{{test_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "uploadEventImages",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have img\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"event_image\");",
+              "    pm.expect(jsonData.event_image).to.not.be.empty;",
+              "});",
+              "",
+              "pm.test(\"Is image path valid\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    var img_path = \"uploads/events/\" + pm.environment.get(\"event_id\") + \"/image-1.png\"",
+              "    pm.expect(jsonData.event_image[1]).to.be.equal(img_path);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "images",
+              "type": "file",
+              "uuid": "96fa97a3-c547-4443-9790-a3557bed1abd",
+              "src": "img.png"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{HOST}}/moderation/events/upload/images/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "moderation",
+            "events",
+            "upload",
+            "images",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deleteEventImages",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"imageIndexes\": [1]\r\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/moderation/events/delete/images/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "moderation",
+            "events",
+            "delete",
+            "images",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "setCategoryWeight",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// pm.test(\"Have weights\", function () {",
+              "//     var jsonData = pm.response.json();",
+              "//     pm.expect(jsonData).to.have.property(\"weights\");",
+              "//     pm.expect(jsonData.weights).to.not.be.empty;",
+              "// });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"categories\":\r\n    {\r\n        \"Концерт\": 0.5,\r\n        \"Спектакль\": 0.3\r\n    }\r\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/recommendation/event/set/weight/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "recommendation",
+            "event",
+            "set",
+            "weight",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getRecommendedEvents",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// pm.test(\"Have interests\", function () {",
+              "//     var jsonData = pm.response.json();",
+              "//     pm.expect(jsonData).to.have.property(\"interests\");",
+              "//     pm.expect(jsonData.interests).to.not.be.empty;",
+              "// });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/recommendation/event",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "recommendation",
+            "event"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "attendEvent",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// pm.test(\"Have interests\", function () {",
+              "//     var jsonData = pm.response.json();",
+              "//     pm.expect(jsonData).to.have.property(\"interests\");",
+              "//     pm.expect(jsonData.interests).to.not.be.empty;",
+              "// });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"state\": \"will_attend\"\r\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/recommendation/event/attend/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "recommendation",
+            "event",
+            "attend",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "attendState",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// pm.test(\"Have interests\", function () {",
+              "//     var jsonData = pm.response.json();",
+              "//     pm.expect(jsonData).to.have.property(\"interests\");",
+              "//     pm.expect(jsonData.interests).to.not.be.empty;",
+              "// });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"state\": \"will_attend\"\r\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/recommendation/event/attend/state/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "recommendation",
+            "event",
+            "attend",
+            "state",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getAttendedEvents",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// pm.test(\"Have interests\", function () {",
+              "//     var jsonData = pm.response.json();",
+              "//     pm.expect(jsonData).to.have.property(\"interests\");",
+              "//     pm.expect(jsonData.interests).to.not.be.empty;",
+              "// });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/recommendation/event/attend?state=will_attend",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "recommendation",
+            "event",
+            "attend"
+          ],
+          "query": [
+            {
+              "key": "state",
+              "value": "will_attend"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getInterests",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// pm.test(\"Have interests\", function () {",
+              "//     var jsonData = pm.response.json();",
+              "//     pm.expect(jsonData).to.have.property(\"interests\");",
+              "//     pm.expect(jsonData.interests).to.not.be.empty;",
+              "// });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{HOST}}/recommendation/user/interests",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "recommendation",
+            "user",
+            "interests"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getEvents",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response is not empty\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"total\");",
+              "    pm.expect(jsonData.total).to.be.above(0);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "size",
+            "value": "10",
+            "type": "text"
+          },
+          {
+            "key": "page",
+            "value": "1",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/events",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "events"
+          ],
+          "query": [
+            {
+              "key": "dateFrom",
+              "value": "2025-01-01",
+              "disabled": true
+            },
+            {
+              "key": "dateTo",
+              "value": "2025-12-31",
+              "disabled": true
+            },
+            {
+              "key": "page",
+              "value": "1",
+              "disabled": true
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getEventById",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have title\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.be.an(\"object\");",
+              "    pm.expect(jsonData).to.have.property(\"title\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{HOST}}/events/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "events",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getEventMap",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have array\", function () {",
+              "    let jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"events\");",
+              "    pm.expect(jsonData.events).to.be.an(\"array\");",
+              "    pm.expect(jsonData.events.length).to.be.above(0);",
+              "});",
+              "",
+              "pm.test(\"Have coordinates\", function () {",
+              "    let jsonData = pm.response.json();",
+              "    for (let i = 0; i < jsonData.events.length; i++) {",
+              "        pm.expect(jsonData.events[i]).to.have.property(\"coordinates\");",
+              "    }",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{HOST}}/events/map",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "events",
+            "map"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getInterestingEvents",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Have array\", function () {",
+              "    let jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"events\");",
+              "    pm.expect(jsonData.events).to.be.an(\"array\");",
+              "    pm.expect(jsonData.events.length).to.be.above(0);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{HOST}}/events/interesting",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "events",
+            "interesting"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "updateEvent",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// pm.test(\"Have title\", function () {",
+              "//     var jsonData = pm.response.json();",
+              "//     pm.expect(jsonData).to.be.an(\"object\");",
+              "//     pm.expect(jsonData).to.have.property(\"title\");",
+              "//     let title = jsonData.title;",
+              "//     pm.expect(title).to.be.equal(\"updated event\");",
+              "// });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"updated event\",\n  \"description\": \"updated\",\n  \"category\": \"Музей\",\n  \"status\": \"inactive\"\n}"
+        },
+        "url": {
+          "raw": "{{HOST}}/events/update/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "events",
+            "update",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deleteEvent",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code  200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "    //pm.environment.unset(\"token\"); //очищение токена",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/events/delete/{{event_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "events",
+            "delete",
+            "{{event_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "revoke fail",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 403\", function () {\r",
+              "    pm.response.to.have.status(403);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"userId\": \"{{dev_id}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{HOST}}/auth/revoke",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "auth",
+            "revoke"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "logout",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}",
+            "type": "text"
+          },
+          {
+            "key": "x-refresh-token",
+            "value": "{{test_refresh_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/auth/logout",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "auth",
+            "logout"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "revoke",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{dev_token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"userId\": \"{{test_id}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{HOST}}/auth/revoke",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "auth",
+            "revoke"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deleteUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code  200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "    //pm.environment.unset(\"token\"); //очищение токена",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{test_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/user/delete/{{test_id}}",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "user",
+            "delete",
+            "{{test_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "logout all",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{dev_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{HOST}}/auth/logout/all",
+          "host": [
+            "{{HOST}}"
+          ],
+          "path": [
+            "auth",
+            "logout",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
