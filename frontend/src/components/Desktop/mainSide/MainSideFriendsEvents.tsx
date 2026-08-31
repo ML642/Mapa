@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { FriendActivityEvent } from '../../../services';
-import { buildApiAssetUrl } from '../../../config';
+import { getEventImageUrl } from '../../../utils/eventImage';
 import { BookmarkFilledIcon, BookmarkOutlineIcon } from '../../Icons/CommonIcons';
 import { EventCategoryIcon, EventPriceIcon, EventTimeIcon } from '../../Icons/EventIcons';
 import FriendAvatar from '../friends/FriendAvatar';
@@ -13,9 +13,9 @@ interface Props {
     onClickEvent?: (id: string) => void;
 }
 
-function FriendsEventImage({ image, title }: { image?: string | string[]; title: string }) {
+function FriendsEventImage({ image, title, category }: { image?: string | string[]; title: string; category?: string }) {
     const [imageFailed, setImageFailed] = useState(false);
-    const imageUrl = buildApiAssetUrl(image);
+    const imageUrl = getEventImageUrl(image, category);
 
     return (
         <div className="h-[120px] w-[187.7px] shrink-0 overflow-hidden rounded-[4px] bg-[var(--color-surface-placeholder)] max-md:w-[120px]">
@@ -66,7 +66,7 @@ export default function MainSideFriendsEvents({ events, onClickEvent }: Props) {
                         }}
                         className="flex h-[161px] w-full gap-[12px] border-b border-brand-soft px-[12px] py-[20px] text-left hover:bg-brand/[0.03]"
                     >
-                        <FriendsEventImage image={event.event_image} title={event.title} />
+                        <FriendsEventImage image={event.event_image} title={event.title} category={event.category} />
 
                         <div className="flex h-[120px] min-w-0 flex-1 flex-col justify-between">
                             <div className="flex items-start justify-between gap-[6px]">

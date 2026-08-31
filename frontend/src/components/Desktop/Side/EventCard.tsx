@@ -3,7 +3,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef, useState, type MouseEvent, type TouchEvent as ReactTouchEvent } from "react";
 import { motion, useDragControls } from "framer-motion";
 import { useShareEventModal } from "../contexts/ShareEventContext";
-import { buildApiAssetUrl } from "../../../config";
+import { getEventImageUrl } from "../../../utils/eventImage";
 import { mapboxService } from "../../../services/mapboxService";
 import { useFavorites } from "../contexts/FavoriteContext";
 import { useFriendModal } from "../contexts/AddFriendsContext";
@@ -184,7 +184,7 @@ export default function EventCard({
     };
 
     const googleEmbedUrl = mapboxService.getGoogleEmbedUrl(lat, lon);
-    const eventImageUrl = buildApiAssetUrl(eventData?.event_image);
+    const eventImageUrl = getEventImageUrl(eventData?.event_image, eventData?.category);
     const priceLabel = getPriceLabel(eventData?.price, eventData?.price_description, eventData?.is_premium);
     const isFavoriteDisabled = loading || !eventId || loadingFavorites.has(eventId);
     const eventFriendsWillAttend = friendsOverview?.willAttendEvents

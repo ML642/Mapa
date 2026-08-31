@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useFavorites } from '../contexts/FavoriteContext';
-import { buildApiAssetUrl } from '../../../config';
+import { getEventImageUrl } from '../../../utils/eventImage';
 import { BookmarkFilledIcon, BookmarkOutlineIcon } from '../../Icons/CommonIcons';
 import { EventCategoryIcon, EventPriceIcon, EventTimeIcon } from '../../Icons/EventIcons';
 import { getCategoryLabel, getCategoryTagStyle } from '../../categoryTag';
@@ -25,7 +25,7 @@ const Event: React.FC<Props> = ({ id, title, category, date, location, time, pri
     const [imageFailed, setImageFailed] = useState(false);
     const [priceDetailsOpen, setPriceDetailsOpen] = useState(false);
     const categoryTagStyle = getCategoryTagStyle(category);
-    const imageUrl = buildApiAssetUrl(image);
+    const imageUrl = getEventImageUrl(image, category);
 
     useEffect(() => {
         setImageFailed(false);

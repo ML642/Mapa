@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { buildApiAssetUrl } from '../../config';
+import { getEventImageUrl } from '../../utils/eventImage';
 import FavoritesEmptyIllustration from '../Icons/FavoritesEmptyIllustration';
 import { eventsService, favoritesService, getSessionSnapshot, readSessionUserId, subscribeToSession, userService } from '../../services';
 import Skeleton from '../Common/Skeleton';
@@ -57,7 +57,7 @@ function FavoritesEventCard({
     attendanceStatus?: 'Going' | 'Interested';
     onClick?: (id: string) => void;
 }) {
-    const imageUrl = buildApiAssetUrl(event_image);
+    const imageUrl = getEventImageUrl(event_image, category);
     const primaryFriend = attendees[0];
     const remainingFriends = Math.max(0, attendees.length - 1);
 
