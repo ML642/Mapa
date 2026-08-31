@@ -277,12 +277,22 @@ export default function EventCardOverview({
                         loading="lazy"
                     />
                 ) : (
-                    <div className="absolute inset-0 flex items-center justify-center rounded-xl border-0 bg-[var(--color-surface-muted)] px-4 text-center text-[12px] text-brand">
-                        `VITE_GOOGLE_MAPS_EMBED_API_KEY` is required for the embedded map.
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-xl bg-[var(--color-surface-placeholder)] px-6 text-center">
+                        <MapPin className="h-7 w-7 text-brand" aria-hidden="true" />
+                        <p className="max-w-[280px] text-[13px] text-brand">
+                            {address || 'Open the route in Google Maps'}
+                        </p>
+                        <button
+                            type="button"
+                            onClick={onOpenYandex}
+                            className="rounded-2xl bg-white px-6 py-2 text-[14px] font-medium text-brand shadow-app-sm transition hover:bg-surface-base"
+                        >
+                            Get directions
+                        </button>
                     </div>
                 )}
 
-                {!isMobile && <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                {googleEmbedUrl && !isMobile && <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                     <button
                         type="button"
                         onClick={onOpenYandex}
