@@ -37,3 +37,4 @@ services:
   - type: keyvalue
     name: mapa-redis
     plan: free
+    ipAllowList: []
