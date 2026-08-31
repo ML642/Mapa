@@ -24,13 +24,13 @@ const transporter = nodemailer.createTransport({
 
 exports.sendVerificationEmail = async (to, code) => {
 	try {
-		const subject = "Код подтверждения MAPA";
+		const subject = "MAPA verification code";
 
 		const html = `
-			<h2>Код подтверждения</h2>
-			<p>Ваш код для подтверждения регистрации:</p>
+			<h2>Verification code</h2>
+			<p>Your registration verification code:</p>
 			<h1>${code}</h1>
-			<p>Код действителен в течение дня.</p>
+			<p>This code is valid for 24 hours.</p>
 		`;
 
 		await transporter.sendMail({
@@ -46,13 +46,13 @@ exports.sendVerificationEmail = async (to, code) => {
 
 exports.sendResetPasswordEmail = async (to, code) => {
 	try {
-		const subject = "Код подтверждения MAPA";
+		const subject = "MAPA password reset code";
 
 		const html = `
-			<h2>Код подтверждения</h2>
-			<p>Ваш код для сброса пароля:</p>
+			<h2>Password reset code</h2>
+			<p>Your password reset code:</p>
 			<h1>${code}</h1>
-			<p>Код действителен в течение 15 минут.</p>
+			<p>This code is valid for 15 minutes.</p>
 		`;
 
 		await transporter.sendMail({

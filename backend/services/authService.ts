@@ -94,7 +94,7 @@ export class AuthService {
 
         const blockCheck = await rateLimit.checkSendOtpBlocked(ip, lowerCaseEmail, "verification");
         if (!blockCheck.isAllowed) {
-            throw new ApiError(429, `Слишком много запросов. Попробуйте через ${blockCheck.remainingSeconds} сек.`, {
+            throw new ApiError(429, `Too many requests. Please try again in ${blockCheck.remainingSeconds} seconds.`, {
                 retryAfter: blockCheck.remainingSeconds,
                 code: "TOO_MANY_REQUESTS"
             } as any);;
@@ -117,7 +117,7 @@ export class AuthService {
 
         const limit = await rateLimit.recordSendOtpAttempt(ip, lowerCaseEmail, "verification");
         if (!limit.isAllowed) {
-            throw new ApiError(429, `Превышен лимит отправки писем. Попробуйте через ${limit.remainingSeconds} сек.`, {
+            throw new ApiError(429, `Too many requests. Please try again in ${limit.remainingSeconds} seconds.`, {
                 retryAfter: limit.remainingSeconds,
                 code: "TOO_MANY_REQUESTS"
             } as any);
@@ -150,7 +150,7 @@ export class AuthService {
         if (!check.isAllowed) {
             throw new ApiError(
                 429,
-                `Превышено количество попыток ввода кода. Вы заблокированы на ${check.remainingSeconds} сек.`,
+                `Too many verification-code attempts. You are blocked for ${check.remainingSeconds} seconds.`,
                 { retryAfter: check.remainingSeconds, code: "TOO_MANY_REQUESTS" } as any
             );
         }
@@ -178,7 +178,7 @@ export class AuthService {
             if (failedResult.isBlockedNow) {
                 throw new ApiError(
                     429,
-                    `Неверный код. Вы превысили лимит попыток и заблокированы на ${failedResult.remainingSeconds} сек.`,
+                    `Invalid code. You exceeded the attempt limit and are blocked for ${failedResult.remainingSeconds} seconds.`,
                     { retryAfter: failedResult.remainingSeconds, code: "TOO_MANY_REQUESTS" } as any
                 );
             }
@@ -217,7 +217,7 @@ export class AuthService {
         if (!limit.isAllowed) {
             throw new ApiError(
                 429,
-                `Слишком много попыток входа. Попробуйте через ${limit.remainingSeconds} сек.`,
+                `Too many requests. Please try again in ${limit.remainingSeconds} seconds.`,
                 { retryAfter: limit.remainingSeconds, code: "TOO_MANY_REQUESTS" } as any
             );
         }
@@ -269,7 +269,7 @@ export class AuthService {
             if (retryAfter > 0) {
                 throw new ApiError(
                     429,
-                    `Слишком много попыток входа. Попробуйте через ${retryAfter} сек.`,
+                    `Too many login attempts. Please try again in ${retryAfter} seconds.`,
                     { retryAfter, code: "TOO_MANY_REQUESTS" } as any
                 );
             }
@@ -439,7 +439,7 @@ export class AuthService {
         if (!blockCheck.isAllowed) {
             throw new ApiError(
                 429,
-                `Слишком много запросов. Попробуйте через ${blockCheck.remainingSeconds} сек.`,
+                `Too many requests. Please try again in ${blockCheck.remainingSeconds} seconds.`,
                 { retryAfter: blockCheck.remainingSeconds, code: "TOO_MANY_REQUESTS" } as any
             );
         }
@@ -468,7 +468,7 @@ export class AuthService {
         if (!limit.isAllowed) {
             throw new ApiError(
                 429,
-                `Превышен лимит отправки писем. Попробуйте через ${limit.remainingSeconds} сек.`,
+                `Too many requests. Please try again in ${limit.remainingSeconds} seconds.`,
                 { retryAfter: limit.remainingSeconds, code: "TOO_MANY_REQUESTS" } as any
             );
         }
@@ -508,7 +508,7 @@ export class AuthService {
         if (!blockCheck.isAllowed) {
             throw new ApiError(
                 429,
-                `Слишком много неудачных попыток. Попробуйте через ${blockCheck.remainingSeconds} сек.`,
+                `Too many requests. Please try again in ${blockCheck.remainingSeconds} seconds.`,
                 { retryAfter: blockCheck.remainingSeconds, code: "TOO_MANY_REQUESTS" } as any
             );
         }
@@ -529,7 +529,7 @@ export class AuthService {
             if (failedAttempt.isBlockedNow) {
                 throw new ApiError(
                     429,
-                    `Превышено количество попыток. Заблокировано на ${failedAttempt.remainingSeconds} сек.`,
+                    `Too many attempts. You are blocked for ${failedAttempt.remainingSeconds} seconds.`,
                     { retryAfter: failedAttempt.remainingSeconds, code: "TOO_MANY_REQUESTS" } as any
                 );
             }

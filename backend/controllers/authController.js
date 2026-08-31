@@ -35,7 +35,7 @@ exports.sendVerificationEmail = async (req, res, next) => {
         return res.status(200).json({
             message: result.isResent
                 ? "Verification email sent successfully"
-                : "Код уже был отправлен ранее.",
+                : "A verification code has already been sent.",
             ...result
         });
     } catch (error) {
@@ -213,7 +213,7 @@ exports.requestPasswordReset = async (req, res, next) => {
         return res.status(200).json({
             message: result.isResent
                 ? "Reset password email sent successfully"
-                : "Код для сброса пароля уже был отправлен ранее.",
+                : "A password reset code has already been sent.",
             ...result
         });
     } catch (error) {

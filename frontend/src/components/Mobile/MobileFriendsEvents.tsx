@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { KeyboardEvent, MouseEvent } from "react";
 import type { FriendActivityEvent } from "../../services";
-import { buildApiAssetUrl } from "../../config";
+import { getEventImageUrl } from "../../utils/eventImage";
 import { getCategoryLabel, getCategoryTagStyle } from "../categoryTag";
 import { BookmarkFilledIcon, BookmarkOutlineIcon } from "../Icons/CommonIcons";
 import { useFavorites } from "../Desktop/contexts/FavoriteContext";
@@ -27,7 +27,7 @@ function MobileFriendsEventCard({
 }) {
     const { isFavorite, toggleFavorite, loadingFavorites } = useFavorites();
     const [imageFailed, setImageFailed] = useState(false);
-    const imageUrl = buildApiAssetUrl(event.event_image);
+    const imageUrl = getEventImageUrl(event.event_image, event.category);
     const categoryTagStyle = getCategoryTagStyle(event.category);
     const attendees = (event.attendees ?? []).slice(0, 1);
     const remaining = Math.max(0, (event.attendeeCount ?? 0) - attendees.length);
@@ -64,7 +64,7 @@ function MobileFriendsEventCard({
             className={`relative h-[110px] w-[60vw] min-w-[192px] max-w-[228px] shrink-0 snap-start overflow-hidden rounded-[10px] bg-brand-surface outline-none transition-transform active:scale-[0.98] ${
                 active ? "ring-2 ring-accent" : ""
             }`}
-            aria-label={`Открыть мероприятие ${event.title}`}
+            aria-label={`Open event ${event.title}`}
         >
             {imageUrl && !imageFailed ? (
                 <img src={imageUrl} alt="" className="h-full w-full object-cover" onError={() => setImageFailed(true)} />
@@ -93,7 +93,7 @@ function MobileFriendsEventCard({
                     onClick={handleFavorite}
                     disabled={favoriteLoading}
                     className="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full bg-white/95 text-brand shadow-[0_1px_4px_rgba(87,34,75,0.16)] disabled:opacity-60"
-                    aria-label={favorite ? "Убрать из избранного" : "Добавить в избранное"}
+                    aria-label={favorite ? "Remove from favourites" : "Add to favourites"}
                 >
                     {favorite ? <BookmarkFilledIcon className="text-accent" /> : <BookmarkOutlineIcon />}
                 </button>
@@ -123,10 +123,10 @@ export default function MobileFriendsEvents({ events, onClickEvent, onViewAll, a
     return (
         <section className="flex w-full flex-col">
             <div className="mb-[8px] flex items-center justify-between gap-[12px]">
-                <h2 className="text-display text-[20px] text-brand">Куда идут друзья</h2>
+                <h2 className="text-display text-[20px] text-brand">Where your friends are going</h2>
                 {onViewAll ? (
                     <button type="button" onClick={onViewAll} className="shrink-0 text-[12px] text-accent underline underline-offset-2">
-                        Смотреть все
+                        View all
                     </button>
                 ) : null}
             </div>
