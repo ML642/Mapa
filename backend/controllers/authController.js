@@ -5,6 +5,12 @@ const rateLimit = require("../lib/rate-limit/rateLimit");
 const getClientIp = require("../utils/getIp");
 const authService = new AuthService();
 
+const DEFAULT_FRONTEND_URL = "https://frontend-ecru-alpha-77d5ceb795.vercel.app";
+
+const getFrontendUrl = () => (process.env.FRONTEND_URL || DEFAULT_FRONTEND_URL)
+    .trim()
+    .replace(/\/+$/, "");
+
 /**
  */
 exports.register = async (req, res, next) => {
@@ -136,7 +142,7 @@ exports.googleAuth = async (req, res, next) => {
         if (result.isNewUser) {
             return res.status(201).json({
                 message: "Account registered successfully",
-                redirect: `https://my-mapa.by/register?third=${encodeURIComponent(result.user.email)}`,
+                redirect: `${getFrontendUrl()}/register?third=${encodeURIComponent(result.user.email)}`,
                 accessToken: result.accessToken,
                 user: {
                     id: result.user.id,

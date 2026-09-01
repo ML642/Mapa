@@ -40,6 +40,7 @@ const SERVER_MESSAGE_MAP: Record<string, string> = {
   'User is banned': 'Your account has been restricted. Please contact support.',
   'Internal server error': STATUS_MESSAGE_MAP[500],
   GOOGLE_TOKEN_REQUIRED: 'We could not sign you in with Google. Please try again.',
+  EMAIL_DELIVERY_UNAVAILABLE: 'We cannot send email codes at the moment. Please try again shortly.',
   INVALID_GOOGLE_TOKEN: 'We could not sign you in with Google. Please try again.',
   GOOGLE_EMAIL_NOT_VERIFIED: 'The email address on your Google account has not been verified.',
   EMAIL_REGISTERED_WITH_PASSWORD: 'This email address is already registered. Please sign in with your password.',
