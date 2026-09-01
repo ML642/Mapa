@@ -35,14 +35,17 @@ The default port is `3442`. Open `http://localhost:3442/docs` for Swagger UI and
 | `PORT` | No | HTTP port. Defaults to `3442`. |
 | `NODE_ENV` | No | Runtime mode, for example `development` or `production`. |
 | `MONGO_URI` | Yes | MongoDB connection string. |
-| `REDIS_HOST` | Yes | Redis host. |
-| `REDIS_PORT` | Yes | Redis port. |
+| `REDIS_URL` | Production | Full Redis connection URL. Render provides this automatically through `render.yaml`. |
+| `REDIS_HOST` | Local development | Redis host. |
+| `REDIS_PORT` | Local development | Redis port. |
 | `JWT_ACCESS_SECRET` | Yes | Secret used to sign access tokens. |
 | `JWT_REFRESH_SECRET` | Yes | Secret used to sign refresh tokens. |
+| `ALLOWED_ORIGINS` | Production | Comma-separated public frontend origins, without trailing slashes. |
+| `FRONTEND_URL` | Production | Public frontend origin used for Google-registration redirects. |
 | `EMAIL_HOST` | Yes | SMTP host. |
-| `EMAIL_PORT` | Yes | SMTP port. |
+| `EMAIL_PORT` | Yes | SMTP port. Use `2525` for Brevo on a free Render web service. |
 | `EMAIL_USER` | Yes | SMTP username. |
-| `EMAIL_PASS` | Yes | SMTP password or provider API key. |
+| `EMAIL_PASS` | Yes | SMTP key or password. |
 | `EMAIL_FROM` | Yes | Sender address for service emails. |
 | `PARSER_WORKER_TOKEN` | Only for HTTP worker integrations | Token required by `/parser/worker/*` endpoints. |
 | `PARSER_SYSTEM_USER_ID` | No | User ID assigned to parser-created events. |
@@ -50,6 +53,20 @@ The default port is `3442`. Open `http://localhost:3442/docs` for Swagger UI and
 | `DEBUG` | No | Enables additional debug logging. |
 
 Never commit production secrets. Use the provided `.env.example` only as a local-development template.
+
+### Render Free and email
+
+Render Free blocks outbound SMTP ports `25`, `465`, and `587`. Gmail SMTP therefore cannot be used from the free web service. Use an SMTP provider on port `2525`, such as Brevo:
+
+```text
+EMAIL_HOST=smtp-relay.brevo.com
+EMAIL_PORT=2525
+EMAIL_USER=<Brevo SMTP login>
+EMAIL_PASS=<Brevo SMTP key>
+EMAIL_FROM=<verified sender address>
+```
+
+`EMAIL_USER` is the SMTP login shown in Brevo, not the Gmail sender address. Verify `EMAIL_FROM` in the provider before testing registration or password reset.
 
 ## Main capabilities
 
