@@ -64,7 +64,7 @@ export const useMainSideData = (searchQuery: string, activeTab: MainSideTab) => 
         queryFn: async () => {
             try {
                 const { dateFrom, dateTo } = getDateRangeForTab(activeTab);
-                return await eventsService.getEventsList({ dateFrom, dateTo, limit: 100 });
+                return await eventsService.getEventsList({ dateFrom, dateTo, limit: 4 });
             } catch (err: unknown) {
                 if (isAxiosError(err) && err.response?.status === 400) {
                     if (err.response?.data?.message === "No events found") {

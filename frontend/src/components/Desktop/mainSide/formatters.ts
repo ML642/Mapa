@@ -2,7 +2,7 @@ import type { Event } from '../../../services';
 import { formatEventDateLabel, formatEventTimeLabel } from '../../../utils/eventDateDisplay';
 import { formatEventPreviewPriceLabel } from '../../../utils/price';
 
-export const MAIN_SIDE_TABS = ['Today', 'Tomorrow', 'Weekend', 'This month'] as const;
+export const MAIN_SIDE_TABS = ['Today', 'Tomorrow', 'Weekend', 'This week'] as const;
 
 export type MainSideTab = (typeof MAIN_SIDE_TABS)[number];
 
@@ -32,13 +32,16 @@ export const getDateRangeForTab = (tab: MainSideTab) => {
             end.setHours(23, 59, 59, 999);
             break;
         }
-        case 'This month':
-            start.setDate(1);
+        case 'This week': {
+            const day = today.getDay();
+            const mondayOffset = day === 0 ? -6 : 1 - day;
+            start.setDate(today.getDate() + mondayOffset);
             start.setHours(0, 0, 0, 0);
-            end.setMonth(today.getMonth() + 1);
-            end.setDate(0);
+            end.setTime(start.getTime());
+            end.setDate(end.getDate() + 6);
             end.setHours(23, 59, 59, 999);
             break;
+        }
     }
 
     return {
