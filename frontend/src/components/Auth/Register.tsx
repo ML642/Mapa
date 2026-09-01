@@ -171,7 +171,7 @@ const Register: React.FC = () => {
 
         try {
             const response = await authService.verifyEmailCode({
-                code: verificationCode,
+                code: Number(verificationCode),
                 email: normalizedEmail,
             });
 
